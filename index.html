@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Camping no Litoral - 14 dias de Sol e Mar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #e0f7ff 0%, #ffffff 50%, #e0ffff 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            color: white;
+        }
+
+        .nav-btn:not(.active) {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+
+        .print-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f97316 0%, #ec4899 50%, #a855f7 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #6b7280;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .card-content {
+            color: #4b5563;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-content li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .card-content li:last-child {
+            border-bottom: none;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .info-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .info-item h4 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Warning Boxes */
+        .warning-box {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .warning-box h3 {
+            color: #dc2626;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .warning-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #dc2626;
+        }
+
+        .warning-item h4 {
+            color: #dc2626;
+            margin-bottom: 10px;
+        }
+
+        /* Table */
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .menu-table th,
+        .menu-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .menu-table th {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .day-badge {
+            background: linear-gradient(135deg, #3b82f6 0%, #a855f7 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .tip-badge {
+            background: #d1fae5;
+            color: #059669;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 50px;
+            border-radius: 20px;
+        }
+
+        footer h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: #d1d5db;
+            margin-bottom: 30px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            nav, footer, .nav-buttons, .print-btn {
+                display: none !important;
+            }
+
+            .section {
+                display: block !important;
+                page-break-after: always;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin: 20px 0;
+            }
+
+            .section:last-child {
+                page-break-after: avoid;
+            }
+
+            .hero {
+                background: #f3f4f6;
+                color: #1f2937;
+                page-break-after: always;
+            }
+
+            .card, .info-box, .warning-box {
+                page-break-inside: avoid;
+            }
+
+            .card-header,
+            .info-box,
+            .menu-table th {
+                background: #e5e7eb !important;
+                color: #1f2937 !important;
+            }
+
+            h1, h2, h3 {
+                color: #1f2937 !important;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Shopping List */
+        .shopping-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .shopping-category {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .shopping-category h4 {
+            color: #92400e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .shopping-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .shopping-category li {
+            padding: 5px 0;
+            color: #1f2937;
+            font-size: 14px;
+        }
+
+        .shopping-category li::before {
+            content: "• ";
+            color: #f59e0b;
+            font-weight: bold;
+        }
+
+        /* Equipment Checklist */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .equipment-item {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .equipment-item::before {
+            content: "✓";
+            background: #10b981;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                🏕️ Camping Litoral
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="showSection('home')">🏠 Início</button>
+                <button class="nav-btn" onclick="showSection('roteiro')">🗺️ Roteiro</button>
+                <button class="nav-btn" onclick="showSection('hospedagem')">⛺ Hospedagem</button>
+                <button class="nav-btn" onclick="showSection('cardapio')">🍽️ Cardápio</button>
+                <button class="nav-btn" onclick="showSection('equipamentos')">✅ Equipamentos</button>
+                <button class="nav-btn" onclick="showSection('conservacao')">❄️ Conservação</button>
+                <button class="nav-btn print-btn" onclick="window.print()">🖨️ Imprimir Tudo</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Guia de Camping<br><span style="font-size: 3rem;">no Litoral</span></h1>
+                    <p>14 dias de sol, mar e aventura</p>
+                    <p style="font-size: 1.2rem;">Dicas, cardápio econômico e roteiro completo para 4 pessoas</p>
+                    <div class="hero-stats">
+                        <div class="stat-badge">📍 234 km de costa</div>
+                        <div class="stat-badge">👥 Para 4 pessoas</div>
+                        <div class="stat-badge">⏰ 14 dias</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="card-grid" style="margin-top: 50px;">
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">🗺️</div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">4 Cidades</h3>
+                        <p style="color: #6b7280;">Bertioga a Ubatuba</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">🌊</div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">15+ Praias</h3>
+                        <p style="color: #6b7280;">Paradisíacas</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">⛺</div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">8 Campings</h3>
+                        <p style="color: #6b7280;">Recomendados</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 10px;">🍽️</div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">14 Dias</h3>
+                        <p style="color: #6b7280;">Cardápio completo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Introduction -->
+            <div style="text-align: center; margin: 50px 0;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Sua Aventura Começa Aqui</h2>
+                <p style="font-size: 1.2rem; color: #6b7280; max-width: 800px; margin: 0 auto 40px;">
+                    Este guia foi criado especialmente para quem quer explorar o litoral paulista de forma 
+                    econômica e organizada. Com roteiro detalhado, dicas de camping e cardápio planejado 
+                    para 14 dias, você terá tudo que precisa para uma aventura inesquecível.
+                </p>
+
+                <div class="info-grid">
+                    <div class="info-item" style="background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); color: white; padding: 30px; border-radius: 15px;">
+                        <h4>Roteiro Completo</h4>
+                        <p style="opacity: 0.9;">Todas as praias e atrações do litoral norte</p>
+                    </div>
+                    <div class="info-item" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px; border-radius: 15px;">
+                        <h4>Cardápio Econômico</h4>
+                        <p style="opacity: 0.9;">Refeições planejadas para 4 pessoas por 14 dias</p>
+                    </div>
+                    <div class="info-item" style="background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%); color: white; padding: 30px; border-radius: 15px;">
+                        <h4>Dicas Práticas</h4>
+                        <p style="opacity: 0.9;">Conservação, equipamentos e hospedagem</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roteiro Section -->
+        <section id="roteiro" class="section">
+            <div class="section-header">
+                <h2>Roteiro Completo</h2>
+                <p>234 km de costa • Fim de Ano</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);">
+                        📍 BERTIOGA
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>🌊 Praia Branca</li>
+                            <li>🌊 Praia Maitinga</li>
+                            <li>🌊 Praia São Lourenço</li>
+                            <li>🌊 Praia Guaratuba + Cachoeira</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        📍 SÃO SEBASTIÃO
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>🌊 Praia Jureia</li>
+                            <li>🌊 Praia Maresias</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        📍 CARAGUATATUBA
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>🌊 Martins de Sá</li>
+                            <li>🌊 Massaguaçu</li>
+                            <li>🌊 Cocanha</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);">
+                        📍 UBATUBA
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>🌊 Ilha das Couves (R$100/pessoa)</li>
+                            <li>🌊 Praia do Cedro</li>
+                            <li>🌊 Gruta que Chora</li>
+                            <li>🌊 Praia do Itamambuca</li>
+                            <li>🌊 Cachoeira do Prumirim</li>
+                            <li>🌊 Praia do Felix + Praia do Português</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" style="background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);">
+                <h3>🚤 Passeio Especial</h3>
+                <p style="font-size: 1.2rem;">Passeio de barco com o Tio para Montão de Trigo (se ele deixar)</p>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Restrições para Kombi-Home</h3>
+                
+                <div class="warning-item">
+                    <h4>ILHABELA</h4>
+                    <p>Multa de mais de R$ 10.000! Necessário cadastro na prefeitura, reserva em camping habilitado e autorização especial.</p>
+                </div>
+
+                <div class="warning-item">
+                    <h4>UBATUBA</h4>
+                    <p>Taxa diária: R$ 39,00 para vans. Pagamento via TAG, site ou app.</p>
+                </div>
+
+                <div class="warning-item">
+                    <h4>GUARUJÁ</h4>
+                    <p>Taxa diária: R$ 39,00 para vans. Pagamento via TAG, site ou app.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hospedagem Section -->
+        <section id="hospedagem" class="section">
+            <div class="section-header">
+                <h2>Campings Recomendados</h2>
+                <p>Hospedagens selecionadas para sua aventura</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        ⛺ Camping Cacau
+                    </div>
+                    <div class="card-content">
+                        <p><strong>📍 Localização:</strong> São Sebastião</p>
+                        <p><strong>📞 Telefone:</strong> -</p>
+                        <p><strong>💰 Preço:</strong> Consultar</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        ⛺ Camping Surf House
+                    </div>
+                    <div class="card-content">
+                        <p><strong>📍 Localização:</strong> Caraguatatuba</p>
+                        <p><strong>📞 Telefone:</strong> (12) 97604-6241</p>
+                        <p><strong>💰 Preço:</strong> Consultar</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        ⛺ Camping Prumirim
+                    </div>
+                    <div class="card-content">
+                        <p><strong>📍 Localização:</strong> Ubatuba</p>
+                        <p><strong>📞 Telefone:</strong> (11) 99347-2373</p>
+                        <p><strong>💰 Preço:</strong> R$ 70-90</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        ⛺ Camping Tio Gato
+                    </div>
+                    <div class="card-content">
+                        <p><strong>📍 Localização:</strong> Ubatuba</p>
+                        <p><strong>📞 Telefone:</strong> (12) 99242-3687</p>
+                        <p><strong>💰 Preço:</strong> Consultar</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        ⛺ Kza Rasta Surf Camp
+                    </div>
+                    <div class="card-content">
+                        <p><strong>📍 Localização:</strong> Ubatuba</p>
+                        <p><strong>📞 Telefone:</strong> (12) 98827-6801</p>
+                        <p><strong>💰 Preço:</strong> R$ 60</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        ⛺ Esquina Camping
+                    </div>
+                    <div class="card-content">
+                        <p><strong>📍 Localização:</strong> Ubatuba</p>
+                        <p><strong>📞 Telefone:</strong> (12) 99245-8989</p>
+                        <p><strong>💰 Preço:</strong> R$ 60/pessoa</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        ⛺ Camping El Shadai
+                    </div>
+                    <div class="card-content">
+                        <p><strong>📍 Localização:</strong> Ubatuba</p>
+                        <p><strong>📞 Telefone:</strong> (12) 98131-1401</p>
+                        <p><strong>💰 Preço:</strong> R$ 40 (antecipado)</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        ⛺ Camping Motorhome Vida Boa
+                    </div>
+                    <div class="card-content">
+                        <p><strong>📍 Localização:</strong> Caraguatatuba</p>
+                        <p><strong>📞 Telefone:</strong> (12) 98165-9637</p>
+                        <p><strong>💰 Preço:</strong> R$ 50</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);">
+                <h3>🏕️ Dicas de Reserva</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>✅ Faça sempre</h4>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li>• Reserve com antecedência</li>
+                            <li>• Confirme disponibilidade por telefone</li>
+                            <li>• Pergunte sobre estrutura (banheiros, chuveiros)</li>
+                        </ul>
+                    </div>
+                    <div class="info-item">
+                        <h4>📋 Leve sempre</h4>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li>• Documentos pessoais</li>
+                            <li>• Comprovante de reserva</li>
+                            <li>• Dinheiro em espécie</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cardápio Section -->
+        <section id="cardapio" class="section">
+            <div class="section-header">
+                <h2>Cardápio de 14 Dias</h2>
+                <p>Planejado para 4 pessoas • Econômico e nutritivo</p>
+            </div>
+
+            <div class="info-box" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);">
+                <h3>☀️ Café da Manhã (Diário)</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>🍞 Tradicional</h4>
+                        <p>Pão, margarina, queijo/presunto, café, leite</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>🍎 Natural</h4>
+                        <p>Frutas, granola, iogurte ou leite em pó</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>🧁 Energético</h4>
+                        <p>Bolo simples, achocolatado, suco</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 40px 0 20px; font-size: 2rem;">🍽️ Almoço / Jantar no Camping</h3>
+
+            <table class="menu-table">
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Prato Principal</th>
+                        <th>Acompanhamentos</th>
+                        <th>Dica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="day-badge">1</span></td>
+                        <td>Arroz + Feijão + Linguiça</td>
+                        <td>Farofa e salada</td>
+                        <td><span class="tip-badge">Clássico e fácil</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">2</span></td>
+                        <td>Espaguete ao molho de tomate e atum</td>
+                        <td>Pão torrado</td>
+                        <td><span class="tip-badge">Pouco utensílio</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">3</span></td>
+                        <td>Arroz + Carne moída + Legumes</td>
+                        <td>Milho e ervilha</td>
+                        <td><span class="tip-badge">Sustenta bem</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">4</span></td>
+                        <td>Frango grelhado + Purê de batata</td>
+                        <td>Salada verde</td>
+                        <td><span class="tip-badge">Leve</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">5</span></td>
+                        <td>Arroz + Ovos + Salsicha ao molho</td>
+                        <td>Farofa</td>
+                        <td><span class="tip-badge">Rápido</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">6</span></td>
+                        <td>Strogonoff de frango</td>
+                        <td>Arroz</td>
+                        <td><span class="tip-badge">Prato de conforto</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day-badge">7</span></td>
+                        <td>Macarrão alho e óleo + Legumes</td>
+                        <td>Queijo ralado</td>
+                        <td><span class="tip-badge">Prático</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="background: #dbeafe; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0;">
+                <p style="color: #1e40af; font-weight: bold;">🔄 Repita a sequência para os dias 8-14 com pequenas variações</p>
+            </div>
+
+            <div class="info-box" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);">
+                <h3>🏖️ Lanche na Praia</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>🥪 Opções Práticas</h4>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li>• Sanduíche natural (frango + cenoura + maionese)</li>
+                            <li>• Wraps (tortilha + atum + milho + alface)</li>
+                            <li>• Salada fria no pote (macarrão + legumes)</li>
+                            <li>• Frutas: banana, tangerina, maçã</li>
+                        </ul>
+                    </div>
+                    <div class="info-item">
+                        <h4>🧊 Para Beber</h4>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li>• Água gelada (sempre!)</li>
+                            <li>• Suco natural ou de caixinha</li>
+                            <li>• Água de coco</li>
+                            <li>• Isotônico caseiro</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 40px 0 20px; font-size: 2rem;">🛒 Lista de Compras (1-2 semanas / 4 pessoas)</h3>
+
+            <div class="shopping-grid">
+                <div class="shopping-category" style="background: #fef3c7;">
+                    <h4>🥖 Secos</h4>
+                    <ul>
+                        <li>Arroz (4 kg)</li>
+                        <li>Feijão (2 kg)</li>
+                        <li>Macarrão (2 kg)</li>
+                        <li>Farinha de mandioca (1 kg)</li>
+                        <li>Pão/torradas (3 kg)</li>
+                        <li>Café (500g)</li>
+                        <li>Açúcar (1 kg)</li>
+                    </ul>
+                </div>
+
+                <div class="shopping-category" style="background: #fecaca;">
+                    <h4>🍖 Proteínas</h4>
+                    <ul>
+                        <li>Frango (2 kg)</li>
+                        <li>Carne moída/linguiça (2 kg)</li>
+                        <li>Queijo e presunto (500g cada)</li>
+                        <li>4 latas de atum/sardinha</li>
+                        <li>2 caixinhas creme de leite</li>
+                        <li>2 sachês molho tomate</li>
+                    </ul>
+                </div>
+
+                <div class="shopping-category" style="background: #d1fae5;">
+                    <h4>🥦 Hortifruti</h4>
+                    <ul>
+                        <li>Batata, tomate, cebola (3 kg)</li>
+                        <li>Alface, pepino (renovar)</li>
+                        <li>Frutas variadas (3-4 kg)</li>
+                        <li>Cenoura</li>
+                        <li>Limão</li>
+                    </ul>
+                </div>
+
+                <div class="shopping-category" style="background: #dbeafe;">
+                    <h4>🧃 Bebidas</h4>
+                    <ul>
+                        <li>Água (2L/pessoa/dia)</li>
+                        <li>Sucos (4L/semana)</li>
+                        <li>Achocolatado</li>
+                        <li>Leite UHT</li>
+                        <li>Café</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipamentos Section -->
+        <section id="equipamentos" class="section">
+            <div class="section-header">
+                <h2>Checklist de Equipamentos</h2>
+                <p>Tudo que você precisa para acampar com conforto</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #ef4444 0%, #ec4899 100%);">
+                        🍳 Cozinha
+                    </div>
+                    <div class="card-content">
+                        <div class="equipment-grid">
+                            <div class="equipment-item">Fogareiro</div>
+                            <div class="equipment-item">Panela</div>
+                            <div class="equipment-item">Frigideira</div>
+                            <div class="equipment-item">Tábua de corte</div>
+                            <div class="equipment-item">Faca</div>
+                            <div class="equipment-item">Pratos</div>
+                            <div class="equipment-item">Copos</div>
+                            <div class="equipment-item">Talheres</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);">
+                        🛏️ Dormir
+                    </div>
+                    <div class="card-content">
+                        <div class="equipment-grid">
+                            <div class="equipment-item">Barraca 4 pessoas</div>
+                            <div class="equipment-item">Colchões infláveis</div>
+                            <div class="equipment-item">Sacos de dormir</div>
+                            <div class="equipment-item">Travesseiros</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);">
+                        ❄️ Conservação
+                    </div>
+                    <div class="card-content">
+                        <div class="equipment-grid">
+                            <div class="equipment-item">Cooler grande</div>
+                            <div class="equipment-item">Gelo artificial</div>
+                            <div class="equipment-item">Garrafas térmicas</div>
+                            <div class="equipment-item">Sacos térmicos</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        🔧 Diversos
+                    </div>
+                    <div class="card-content">
+                        <div class="equipment-grid">
+                            <div class="equipment-item">Lanterna</div>
+                            <div class="equipment-item">Fósforos</div>
+                            <div class="equipment-item">Detergente</div>
+                            <div class="equipment-item">Panos</div>
+                            <div class="equipment-item">Sacos de lixo</div>
+                            <div class="equipment-item">Corda</div>
+                            <div class="equipment-item">Cadeiras dobráveis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" style="background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);">
+                <h3>🔥 Dicas de Segurança</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>⚠️ Sempre leve</h4>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li>• Kit de primeiros socorros</li>
+                            <li>• Protetor solar e repelente</li>
+                            <li>• Lanterna com pilhas extras</li>
+                            <li>• Fósforos à prova d'água</li>
+                        </ul>
+                    </div>
+                    <div class="info-item">
+                        <h4>📱 Emergência</h4>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li>• Power bank carregado</li>
+                            <li>• Lista de telefones importantes</li>
+                            <li>• Documentos em sacos plásticos</li>
+                            <li>• Dinheiro em espécie</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <h3>💡 Dicas de Conforto</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>🏕️ Montagem</h4>
+                        <p>Monte a barraca em local plano, longe de formigueiros e com boa drenagem.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>🌙 Noite</h4>
+                        <p>Leve roupas quentes - a temperatura pode cair bastante próximo ao mar.</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>☀️ Dia</h4>
+                        <p>Use chapéu e óculos escuros. O sol reflete na areia e na água.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conservação Section -->
+        <section id="conservacao" class="section">
+            <div class="section-header">
+                <h2>Conservação de Alimentos</h2>
+                <p>Mantenha tudo fresco e seguro durante a viagem</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);">
+                        🧊 Estratégias de Refrigeração
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 15px;">
+                            <h4 style="margin-bottom: 10px;">Cooler Grande</h4>
+                            <p>Use gelo artificial ou garrafas congeladas. Renovar a cada 2-3 dias.</p>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <h4 style="margin-bottom: 10px;">Organização</h4>
+                            <p>Carnes no fundo, laticínios no meio, bebidas em cima.</p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Isolamento</h4>
+                            <p>Mantenha o cooler na sombra, coberto com toalha molhada.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        ✅ Alimentos Seguros
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 15px;">
+                            <h4 style="margin-bottom: 10px;">Produtos UHT</h4>
+                            <p>Leite, molhos e creme de leite em caixinha não precisam de refrigeração.</p>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <h4 style="margin-bottom: 10px;">Conservas</h4>
+                            <p>Atum, sardinha, milho e ervilha em lata são práticos e duráveis.</p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Temperos Secos</h4>
+                            <p>Sal, alho em pó, orégano, colorau não estragam e dão sabor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 40px 0 20px; font-size: 2rem;">Dicas por Tipo de Alimento</h3>
+
+            <div class="card-grid">
+                <div class="card" style="background: linear-gradient(135deg, #ef4444 0%, #ec4899 100%); color: white;">
+                    <h3 style="margin-bottom: 20px;">🥩 Carnes</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">• Congele em porções pequenas</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">• Use primeiro as carnes descongeladas</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">• Nunca recongele carne descongelada</li>
+                        <li style="padding: 8px 0;">• Tempere antes de congelar</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white;">
+                    <h3 style="margin-bottom: 20px;">🥛 Laticínios</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">• Prefira produtos UHT</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">• Queijos duros duram mais</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">• Iogurte: consuma em 2 dias</li>
+                        <li style="padding: 8px 0;">• Manteiga em recipiente fechado</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
+                    <h3 style="margin-bottom: 20px;">🍎 Frutas/Vegetais</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">• Banana e maçã não precisam de frio</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">• Tomate: fora da geladeira</li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">• Folhas: em sacos perfurados</li>
+                        <li style="padding: 8px 0;">• Cebola e alho: local seco</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Cuidados Especiais</h3>
+                
+                <div class="card-grid">
+                    <div class="warning-item">
+                        <h4>🚫 Evite</h4>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li>• Maionese fora da refrigeração</li>
+                            <li>• Ovos crus em preparações</li>
+                            <li>• Carne mal passada</li>
+                            <li>• Alimentos com cheiro estranho</li>
+                            <li>• Produtos vencidos</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #10b981;">
+                        <h4 style="color: #059669; margin-bottom: 10px;">✅ Sempre faça</h4>
+                        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                            <li>• Lave bem as mãos antes de cozinhar</li>
+                            <li>• Use água potável para lavar alimentos</li>
+                            <li>• Cozinhe bem carnes e ovos</li>
+                            <li>• Mantenha utensílios limpos</li>
+                            <li>• Descarte alimentos suspeitos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #fef3c7; padding: 20px; border-radius: 10px; margin-top: 20px; text-align: center;">
+                    <p style="color: #92400e; font-weight: bold;">
+                        🏥 Em caso de mal-estar: Procure imediatamente ajuda médica. 
+                        Tenha sempre o número do SAMU (192) e hospitais locais.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div style="margin-bottom: 30px;">
+            <div style="font-size: 3rem; margin-bottom: 15px;">🌊</div>
+            <h3>Viajar é colecionar pores do sol</h3>
+            <p style="max-width: 600px; margin: 0 auto;">
+                Que sua aventura no litoral seja repleta de momentos inesquecíveis, 
+                paisagens deslumbrantes e memórias que durarão para sempre.
+            </p>
+        </div>
+        
+        <div style="border-top: 1px solid #4b5563; padding-top: 20px;">
+            <p style="color: #9ca3af;">
+                Criado com ❤️ para aventureiros que buscam liberdade e simplicidade
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+
+            // Update active button
+            const buttons = document.querySelectorAll('.nav-btn:not(.print-btn)');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Find and activate the clicked button
+            const activeButton = Array.from(buttons).find(button => 
+                button.textContent.toLowerCase().includes(sectionId === 'home' ? 'início' : 
+                sectionId === 'roteiro' ? 'roteiro' :
+                sectionId === 'hospedagem' ? 'hospedagem' :
+                sectionId === 'cardapio' ? 'cardápio' :
+                sectionId === 'equipamentos' ? 'equipamentos' :
+                sectionId === 'conservacao' ? 'conservação' : '')
+            );
+            
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Print all sections
+        window.addEventListener('beforeprint', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.display = 'block';
+            });
+        });
+
+        window.addEventListener('afterprint', function() {
+            // Restore original state after printing
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
